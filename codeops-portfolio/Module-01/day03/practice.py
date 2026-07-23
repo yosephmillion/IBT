@@ -1,68 +1,77 @@
-#Exercise 1
+# Exercise 1 
+
 cities = [
     "Addis Ababa",
     "Adama",
+    "Addis Ababa",
     "Hawassa",
     "Adama",
-    "Bahir Dar",
-    "Addis Ababa"
+    "Bahir Dar"
 ]
 
 unique_cities = set(cities)
 
-print("Unique cities:")
-for city in unique_cities:
-    print(city)
-
+print("Unique Cities:")
+print(unique_cities)
 print("Count:", len(unique_cities))
+
+
+# Exercise 2 
 
 prices = {
     "Bread": 50,
     "Milk": 80,
     "Eggs": 120,
-    "Sugar": 95,
+    "Sugar": 90,
     "Rice": 150
 }
 
-#Exercise 2
+print("\nPrice Report")
 for item, price in prices.items():
     print(f"{item}: {price} ETB")
 
 
-#Exercise 3
-prices = [100, 250, 400, 80]
+# Exercise 3 
 
-with_tax = [price * 1.15 for price in prices]
+prices_list = [100, 250, 400, 80]
 
+with_tax = [price * 1.15 for price in prices_list]
+
+print("\nPrices with Tax:")
 print(with_tax)
 
-#Exercise 4
-prices = [100, 250, 400, 80]
 
-cheap_items = [price for price in prices if price < 200]
+# Exercise 4 
 
+cheap_items = [price for price in prices_list if price < 200]
+
+print("\nCheap Items:")
 print(cheap_items)
 
-#Exercise 5
+#Exercise 5 
+
 with open("names.txt", "w") as file:
-    file.write("Abel\n")
-    file.write("Sara\n")
-    file.write("Daniel\n")
+    file.write("John\n")
+    file.write("Alice\n")
+    file.write("David\n")
 
-with open("names.txt", "r") as file:
-    for name in file:
-        print(name.strip())
+print("\nReading names.txt")
 
-#Exercise 6
+with open("names.txt") as file:
+    for line in file:
+        print(line.strip())
+
+
+# Exercise 6 
+
 try:
-    number = int(input("Enter a number: "))
+    number = int(input("\nEnter a number: "))
     result = 1000 / number
 except ValueError:
     print("Please enter a valid number.")
 except ZeroDivisionError:
-    print("You cannot divide by zero.")
+    print("Cannot divide by zero.")
 else:
     print("Result:", result)
 finally:
-    print("Program finished.")
-
+    print("Program Finished")
