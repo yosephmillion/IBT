@@ -10,7 +10,7 @@ class Book:
 
 
 book1 = Book("Atomic Habits", "James Clear", 320)
-book2 = Book("Python Crash Course", "Eric Matthes", 544)
+book2 = Book("Fiker Eskemekabir", "Haddis Alemayehu", 544)
 
 book1.describe()
 book2.describe()
@@ -80,7 +80,7 @@ class Product:
 
     def sell(self, n):
         if n > self.quantity:
-            raise ValueError("Not enough stock.")
+            raise ValueError("Not enough.")
         self.quantity -= n
 
 

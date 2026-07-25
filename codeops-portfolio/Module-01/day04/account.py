@@ -26,7 +26,6 @@ class Account:
         print(f"Balance: {self.__balance} ETB")
 
 
-# Test the class
 account1 = Account("Yoseph", "100001", 2000)
 
 account1.deposit(500)
