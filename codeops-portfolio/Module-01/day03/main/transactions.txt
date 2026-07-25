@@ -1,0 +1,7 @@
+Abel,200
+Sara,500
+Abel,300
+John,100
+Sara,250
+John,400
+Abel,100
