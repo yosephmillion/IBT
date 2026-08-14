@@ -1,0 +1,26 @@
+
+*{
+    color: rgba(0, 0, 255, 0.26);
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    font-size: medium;
+    background-color: azure;
+    color: rgb(14, 14, 1);
+}
+
+
+
+input[type="email"], input[type="tel"], input[type="text"], input[type="password"] {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #7d4747b6;
+    border-radius: 4px;
+}
+
+button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Log in</h1>
+    <form class="form" id="loginform" action="/login" method="post">
+    <fieldset class="fieldset1">
+    <legend class="legend"></legend>
+
+    <br>
+    <label class="request" for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Your Name">
+    <br>
+    
+    <br>
+    <label class="request" for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="example@domain.com">
+    <br>
+
+    <br>
+    <label class="request" for="tel">Phone Number</label>
+    <input id="tel" 
+    name="tel" 
+    type="tel"  
+    placeholder="+2519 - - - - - - -">
+    <br>
+    
+    <br>
+    <label class="request" for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="Enter your password">
+    <br>
+    
+    <p id="message"></p>
+
+    <br>
+    <button type="submit">Login</button>
+</fieldset>
+    </form>
+</body>
+<script src="script.js"></script>
+</html>

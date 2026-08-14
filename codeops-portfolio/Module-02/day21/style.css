@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    background-color: azure;
+    color: rgb(14, 14, 1);
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+fieldset {
+    padding: 25px;
+    border: 1px solid #7d4747;
+    border-radius: 8px;
+    background-color: white;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #7d4747;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: 2px solid #555;
+}
+
+button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+#message {
+    font-weight: bold;
+}
+
+#count {
+    text-align: center;
+    font-weight: bold;
+}
