@@ -1,0 +1,7 @@
+.side-bar {
+    width: 240px;
+    background: white;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}

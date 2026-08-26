@@ -1,0 +1,23 @@
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.dish {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 140px;
+    border: 1px solid #ddd;
+}
+
+.dish h2 {
+    color: #222;
+    margin: 0 0 10px;
+}
+
+.dish h3 {
+    color: #555;
+    margin: 0;
+}

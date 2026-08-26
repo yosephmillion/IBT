@@ -1,0 +1,17 @@
+.main-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    padding: 30px;
+}
+
+.side-bar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.menu {
+    flex: 1;
+    min-width: 0;
+}
