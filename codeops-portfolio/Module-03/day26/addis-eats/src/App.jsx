@@ -7,6 +7,7 @@ return (
   <>
   <Header/>
   <Main/>
+  
   <Footer/>
   </>
 );
