@@ -1,24 +1,48 @@
-import PropTypes from "prop-types";
+import State from "../State";
 
-function Dish({ name, price, category, spicy}) {
+function Dish({
+    name,
+    price,
+    image,
+    description,
+    spicy,
+    count,
+    onIncrease,
+    onDecrease
+}) {
     return (
         <div className="dish">
-            <div className="info">
-                <h3>{name}</h3>
-                <h4>{price} ETB</h4>
-                <p>{category}</p>
-                {spicy && <span className="spicy">🌶️SPICY</span>}
+
+            {image && (
+                <img src={image} alt={name} />
+            )}
+
+            <div className="dish-info">
+
+                <h2>{name}</h2>
+
+                {description && (
+                    <p>{description}</p>
+                )}
+
+                <p>{price} ETB</p>
+
+                {spicy && (
+                    <span className="spicy">
+                        🌶️ SPICY
+                    </span>
+                )}
+
+                <State
+                    count={count}
+                    onIncrease={onIncrease}
+                    onDecrease={onDecrease}
+                />
+
             </div>
+
         </div>
     );
 }
 
-Dish.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    spicy: PropTypes.bool,
-}
-
 export default Dish;
-

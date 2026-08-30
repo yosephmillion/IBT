@@ -3,3 +3,9 @@
     padding: 30px;
     overflow-y:auto
 }
+.total{
+    color: aliceblue;
+padding-top: 4px;
+position: relative;
+
+}
