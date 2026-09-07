@@ -1,86 +1,114 @@
-import { useState } from "react";
-import Dish from "./DIsh/Dish";
+import { useEffect, useRef, useState } from "react";
+import Dish from "./Dish/Dish";
 import Card from "./Card";
-import dishlist from "./data/data";
+import { loadDishes } from "../../api";
 import "./Dish/Dish.css";
 
 function Menu() {
-    const [category, setCategory] = useState("All");
-    const [cart, setCart] = useState({});
+  const [category, setCategory] = useState("All");
+  const [dishes, setDishes] = useState([]);
+  const [cart, setCart] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    const categories = [
-        "All",
-        "Main",
-        "Vegetarian",
-        "Breakfast",
-        "Side"
-    ];
+  const searchRef = useRef(null);
 
-    const shown =
-        category === "All"
-            ? dishlist
-            : dishlist.filter((dish) => dish.category === category);
+  const categories = ["All", "Main", "Vegetarian", "Breakfast", "Side"];
 
-    function updateQuantity(id, amount) {
-        setCart((currentCart) => {
-            const currentQuantity = currentCart[id] || 0;
+  useEffect(() => {
+    searchRef.current?.focus();
+  }, []);
 
-            return {
-                ...currentCart,
-                [id]: Math.max(0, currentQuantity + amount)
-            };
-        });
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchDishes() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const data = await loadDishes(category, controller.signal);
+
+        setDishes(data);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          setError(error.message);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
     }
 
-    const totalDishCount = Object.values(cart).reduce(
-        (total, quantity) => total + quantity,
-        0
-    );
+    fetchDishes();
 
-    const totalPrice = dishlist.reduce(
-        (total, dish) =>
-            total + dish.price * (cart[dish.id] || 0),
-        0
-    );
+    return () => {
+      controller.abort();
+    };
+  }, [category]);
 
-    return (
-        <div className="menu">
+  function updateQuantity(id, amount) {
+    setCart((currentCart) => {
+      const currentQuantity = currentCart[id] || 0;
 
-            <h2 className="total">
-                🛒 {totalDishCount}
-            </h2>
+      return {
+        ...currentCart,
+        [id]: Math.max(0, currentQuantity + amount),
+      };
+    });
+  }
 
-            <div className="categories">
-                {categories.map((cat) => (
-                    <button
-                        key={cat}
-                        onClick={() => setCategory(cat)}
-                        className={cat === category ? "active" : ""}
-                    >
-                        {cat}
-                    </button>
-                ))}
-            </div>
-            {shown.map((dish) => (
-                <Card key={dish.id}>
-                    <Dish
-                        {...dish}
-                        count={cart[dish.id] || 0}
-                        onIncrease={() =>
-                            updateQuantity(dish.id, 1)
-                        }
-                        onDecrease={() =>
-                            updateQuantity(dish.id, -1)
-                        }
-                    />
-                </Card>
-            ))}
-            <h3>
-                Total: {totalPrice} ETB
-            </h3>
+  const totalDishCount = Object.values(cart).reduce(
+    (total, quantity) => total + quantity,
+    0,
+  );
 
-        </div>
-    );
+  const totalPrice = dishes.reduce(
+    (total, dish) => total + dish.price * (cart[dish.id] || 0),
+    0,
+  );
+
+  if (loading) {
+    return <p>Loading dishes...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  return (
+    <div className="menu">
+      <div className="io">
+        <h1 className="total">🛒 {totalDishCount}</h1>
+      </div>
+
+      <input ref={searchRef} type="text" placeholder="Search dishes..." />
+
+      <div className="categories">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setCategory(cat)}
+            className={cat === category ? "active" : ""}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {dishes.map((dish) => (
+        <Card key={dish.id}>
+          <Dish
+            {...dish}
+            count={cart[dish.id] || 0}
+            onIncrease={() => updateQuantity(dish.id, 1)}
+            onDecrease={() => updateQuantity(dish.id, -1)}
+          />
+        </Card>
+      ))}
+    </div>
+  );
 }
 
 export default Menu;
