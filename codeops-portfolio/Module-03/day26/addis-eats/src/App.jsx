@@ -1,15 +1,20 @@
-import Header from "./components/Header/Header"
-import Main from "./components/Main/Main"
-import Footer from "./components/Footer/Footer"
+import CartProvider from "./cart/CartProvider";
 
-function App() {
-return (
-  <>
-  <Header/>
-  <Main/>
-  
-  <Footer/>
-  </>
-);
+import Header from "./components/Header/Header";
+import SideBar from "./components/SideBar/SideBar";
+
+import Menu from "./components/Main/Menu/Menu";
+
+export default function App() {
+  return (
+    <CartProvider>
+      <Header />
+
+      <main className="app">
+        <Menu />
+
+        <SideBar />
+      </main>
+    </CartProvider>
+  );
 }
-export default App;

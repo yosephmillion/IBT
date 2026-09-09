@@ -1,23 +1,12 @@
-import Menu from "./Menu/Menu";
-import SideBar from "./SideBar/SideBar";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-function Main() {
-    return (
-        <main
-            style={{
-                display: "grid",
-                gridTemplateColumns: "240px 1fr",
-                gap: "30px",
-                padding: "30px",
-                width: "100%",
-                boxSizing: "border-box",
-                alignItems: "start"
-            }}
-        >
-            <SideBar />
-            <Menu />
-        </main>
-    );
-}
+import App from "./App";
 
-export default Main;
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

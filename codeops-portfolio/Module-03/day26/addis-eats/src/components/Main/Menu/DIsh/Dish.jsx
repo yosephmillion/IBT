@@ -1,48 +1,44 @@
-import State from "../State";
+import { useContext } from "react";
+import { CartContext } from "../cart/CartProvider";
 
-function Dish({
-    name,
-    price,
-    image,
-    description,
-    spicy,
-    count,
-    onIncrease,
-    onDecrease
-}) {
-    return (
-        <div className="dish">
+export default function Dish({ dish }) {
+  const { dispatch, items } = useContext(CartContext);
 
-            {image && (
-                <img src={image} alt={name} />
-            )}
+  const quantity = items[dish.id]?.quantity || 0;
 
-            <div className="dish-info">
+  return (
+    <div className="dish">
+      <h3>{dish.name}</h3>
 
-                <h2>{name}</h2>
+      <p>{dish.category}</p>
 
-                {description && (
-                    <p>{description}</p>
-                )}
+      <strong>${dish.price}</strong>
 
-                <p>{price} ETB</p>
+      <div>
+        <button
+          onClick={() =>
+            dispatch({
+              type: "remove",
+              payload: dish.id,
+            })
+          }
+        >
+          -
+        </button>
 
-                {spicy && (
-                    <span className="spicy">
-                        🌶️ SPICY
-                    </span>
-                )}
+        <span>{quantity}</span>
 
-                <State
-                    count={count}
-                    onIncrease={onIncrease}
-                    onDecrease={onDecrease}
-                />
-
-            </div>
-
-        </div>
-    );
+        <button
+          onClick={() =>
+            dispatch({
+              type: "add",
+              payload: dish,
+            })
+          }
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
 }
-
-export default Dish;
