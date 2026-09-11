@@ -8,26 +8,7 @@ export default function useFetch(url) {
   useEffect(() => {
     const controller = new AbortController();
 
-    async function fetchData() {
-      try {
-        setLoading(true);
-
-        const response = await fetch(url, {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) throw new Error("Failed to fetch");
-
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setError(err.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
+    async function fetchData() {}
 
     fetchData();
 
